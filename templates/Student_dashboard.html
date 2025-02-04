@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
+        }
+        th, td {
+            border: 2px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .present {
+            background-color: lightgreen;
+            font-weight: bold;
+        }
+        .absent {
+            background-color: lightcoral;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Student Dashboard</h1>
+
+    <!-- Timetable Section -->
+    <h2>Class Timetable</h2>
+    <div>
+        {% include 'timetable.html' %}
+    </div>
+
+    <!-- Student Attendance List -->
+    <h2>Student Attendance</h2>
+    <table>
+        <tr>
+            <th>Student Name</th>
+            <th>Attendance Status</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.name }}</td>
+            <td class="{% if student.status == 'Present' %}present{% else %}absent{% endif %}">
+                {{ student.status }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

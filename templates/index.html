@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Smart Attendance System using Face Recognition</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicons -->
+    <link href="static/img/favicon.png" rel="icon" />
+    <link href="static/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="static/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="static/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="static/vendor/aos/aos.css" rel="stylesheet" />
+    <link
+      href="static/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Main CSS File -->
+    <link href="static/css/main.css" rel="stylesheet" />
+  </head>
+
+  <body class="index-page">
+    <header id="header" class="header d-flex align-items-center fixed-top">
+      <div class="container-fluid container-xl position-relative d-flex align-items-center">
+          <a href="index.html" class="logo d-flex align-items-center me-auto">
+              <img src="static/img/logo.png" alt="" />
+              <h1 class="sitename">Smart Attendance by AI Wizards</h1>
+          </a>
+  
+          <nav id="navmenu" class="navmenu">
+              <ul>
+                  <li><a href="#hero" class="active">Home</a></li>
+                  <li><a href="#about">Admin</a></li>
+                  <li><a href="{{ url_for('webcam_recognition') }}">Realtime-detection</a></li>
+                  <li><a href="{{ url_for('student_dashboard') }}">Student</a></li>
+                  <li><a href="#team">Team</a></li>
+                  <li><a href="#contact">Contact</a></li>
+              </ul>
+              <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+          </nav>
+  
+          <a class="btn-getstarted flex-md-shrink-0" href="{{ url_for('recognize_image') }}">Get Started</a>
+      </div>
+  </header>
+  
+
+    <main class="main">
+      <!-- Hero Section -->
+      <section id="hero" class="hero section">
+        <div class="container">
+          <div class="row gy-4">
+            <div
+              class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center"
+            >
+              <h1 data-aos="fade-up">
+                Smart Attendance Management System using Face-Recognition
+              </h1>
+              <p data-aos="fade-up" data-aos-delay="100">
+                Our cutting-edge website leverages advanced AI technologies to
+                revolutionize attendance management. Say goodbye to tedious
+                manual processes and hello to seamless automation! Powered by
+                dlib, opencv and real-time face recognition, our system ensures
+                accurate and lightning-fast attendance tracking for schools,
+                workplaces, and events. Detect multiple faces in a single frame,
+                even in diverse environments, with unmatched precision and
+                reliability.
+              </p>
+              <div
+                class="d-flex flex-column flex-md-row"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <a
+                  href="{{ url_for('recognize_image') }}"
+                  class="btn-get-started"
+                  >Get Started <i class="bi bi-arrow-right"></i
+                ></a>
+                <a
+                  href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
+                  class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0"
+                  ><i class="bi bi-play-circle"></i><span>Watch Video</span></a
+                >
+              </div>
+            </div>
+            <div
+              class="col-lg-6 order-1 order-lg-2 hero-img"
+              data-aos="zoom-out"
+            >
+              <img
+                src="static/img/hero-img.png"
+                class="img-fluid animated"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /Hero Section -->
+
+      <!-- About Section -->
+      <section id="about" class="about section">
+        <div class="container" data-aos="fade-up">
+          <div class="row gx-0">
+            <div
+              class="col-lg-6 d-flex flex-column justify-content-center"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="content">
+                <h3>Who We Are</h3>
+                <h2>Team AI WIZARDS</h2>
+                <p>
+                  We are a passionate team of 3rd-year students mastering the
+                  art and science of Data Science, Artificial Intelligence,
+                  Machine Learning, and Web Development. With a shared vision
+                  for innovation, we blend technical expertise and creativity to
+                  develop smart, real-world solutions that make life easier and
+                  more efficient.
+                </p>
+                <div class="text-center text-lg-start">
+                  <a
+                    href="#"
+                    class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center"
+                  >
+                    <span>Read More</span>
+                    <i class="bi bi-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-lg-6 d-flex align-items-center"
+              data-aos="zoom-out"
+              data-aos-delay="200"
+            >
+              <img src="static/img/about.jpg" class="img-fluid" alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /About Section -->
+
+      <!-- Values Section -->
+      <section id="values" class="values section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Our Value added to this project</h2>
+          <p>The problems we solved after building this<br /></p>
+        </div>
+        <!-- End Section Title -->
+
+        <div class="container">
+          <div class="row gy-4">
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+              <div class="card">
+                <img src="static/img/values-1.png" class="img-fluid" alt="" />
+                <h3>Time Saving</h3>
+                <p>
+                  Our system automates attendance with face recognition, saving
+                  time, ensuring accuracy, reducing delays, and enhancing
+                  teaching and learning.
+                </p>
+              </div>
+            </div>
+            <!-- End Card Item -->
+
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+              <div class="card">
+                <img src="static/img/values-2.png" class="img-fluid" alt="" />
+                <h3>Proxy - Sorry No Chance</h3>
+                <p>
+                  Face recognition ensures accurate attendance, eliminating
+                  proxy attempts and fostering accountability among students in
+                  real time.
+                </p>
+              </div>
+            </div>
+            <!-- End Card Item -->
+
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+              <div class="card">
+                <img src="static/img/values-3.png" class="img-fluid" alt="" />
+                <h3>Analytical Reports</h3>
+                <p>
+                  The system ensures accurate reports by automating attendance
+                  tracking, reducing manual errors, and providing precise
+                  real-time data.
+                </p>
+              </div>
+            </div>
+            <!-- End Card Item -->
+          </div>
+        </div>
+      </section>
+      <!-- /Values Section -->
+
+      <!-- Stats Section -->
+      <section id="stats" class="stats section">
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <div class="row gy-4">
+            <div class="col-lg-3 col-md-6">
+              <div class="stats-item d-flex align-items-center w-100 h-100">
+                <i class="bi bi-emoji-smile color-blue flex-shrink-0"></i>
+                <div>
+                  <span
+                    data-purecounter-start="0"
+                    data-purecounter-end="152"
+                    data-purecounter-duration="1"
+                    class="purecounter"
+                  ></span>
+                  <p>Tested over 150+ Students</p>
+                </div>
+              </div>
+            </div>
+            <!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+              <div class="stats-item d-flex align-items-center w-100 h-100">
+                <i
+                  class="bi bi-journal-richtext color-orange flex-shrink-0"
+                  style="color: #ee6c20"
+                ></i>
+                <div>
+                  <span
+                    data-purecounter-start="0"
+                    data-purecounter-end="3"
+                    data-purecounter-duration="1"
+                    class="purecounter"
+                  ></span>
+                  <p>Verified by 3+ Mentors</p>
+                </div>
+              </div>
+            </div>
+            <!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+              <div class="stats-item d-flex align-items-center w-100 h-100">
+                <i
+                  class="bi bi-headset color-green flex-shrink-0"
+                  style="color: #15be56"
+                ></i>
+                <div>
+                  <span
+                    data-purecounter-start="0"
+                    data-purecounter-end="7"
+                    data-purecounter-duration="1"
+                    class="purecounter"
+                  ></span>
+                  <p>Support team of 7 students</p>
+                </div>
+              </div>
+            </div>
+            <!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+              <div class="stats-item d-flex align-items-center w-100 h-100">
+                <i
+                  class="bi bi-people color-pink flex-shrink-0"
+                  style="color: #bb0852"
+                ></i>
+                <div>
+                  <span
+                    data-purecounter-start="0"
+                    data-purecounter-end="15000"
+                    data-purecounter-duration="1"
+                    class="purecounter"
+                  ></span>
+                  <p>15000+ students and teachers will be benifited</p>
+                </div>
+              </div>
+            </div>
+            <!-- End Stats Item -->
+          </div>
+        </div>
+      </section>
+      <!-- /Stats Section -->
+
+      <!-- Features Section -->
+      <section id="features" class="features section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Features</h2>
+          <p>Our Advacedd Features<br /></p>
+        </div>
+        <!-- End Section Title -->
+
+        <div class="container">
+          <div class="row gy-5">
+            <div class="col-xl-6" data-aos="zoom-out" data-aos-delay="100">
+              <img src="static/img/features.png" class="img-fluid" alt="" />
+            </div>
+
+            <div class="col-xl-6 d-flex">
+              <div class="row align-self-center gy-4">
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                  <div class="feature-box d-flex align-items-center">
+                    <i class="bi bi-check"></i>
+                    <h3>Dynamic Attendance</h3>
+                  </div>
+                </div>
+                <!-- End Feature Item -->
+
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                  <div class="feature-box d-flex align-items-center">
+                    <i class="bi bi-check"></i>
+                    <h3>Real-Time Updates</h3>
+                  </div>
+                </div>
+                <!-- End Feature Item -->
+
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                  <div class="feature-box d-flex align-items-center">
+                    <i class="bi bi-check"></i>
+                    <h3>Role-Based Access</h3>
+                  </div>
+                </div>
+                <!-- End Feature Item -->
+
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
+                  <div class="feature-box d-flex align-items-center">
+                    <i class="bi bi-check"></i>
+                    <h3>Face Recognition</h3>
+                  </div>
+                </div>
+                <!-- End Feature Item -->
+
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="600">
+                  <div class="feature-box d-flex align-items-center">
+                    <i class="bi bi-check"></i>
+                    <h3>Exportable Reports</h3>
+                  </div>
+                </div>
+                <!-- End Feature Item -->
+
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="700">
+                  <div class="feature-box d-flex align-items-center">
+                    <i class="bi bi-check"></i>
+                    <h3>Secure Authentication</h3>
+                  </div>
+                </div>
+                <!-- End Feature Item -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /Features Section -->
+
+      <!-- Alt Features Section -->
+      <section id="alt-features" class="alt-features section">
+        <div class="container">
+          <div class="row gy-5">
+            <div
+              class="col-xl-7 d-flex order-2 order-xl-1"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="row align-self-center gy-5">
+                <div class="col-md-6 icon-box">
+                  <i class="bi bi-award"></i>
+                  <div>
+                    <h4>Student Portal</h4>
+                    <p>
+                      The student portal provides personalized reports,
+                      notifications enhancing transparency and engagement.
+                    </p>
+                  </div>
+                </div>
+                <!-- End Feature Item -->
+
+                <div class="col-md-6 icon-box">
+                  <i class="bi bi-card-checklist"></i>
+                  <div>
+                    <h4>Admin Portal</h4>
+                    <p>
+                      The admin portal enables efficient monitoring, reports,
+                      and management.
+                    </p>
+                  </div>
+                </div>
+                <!-- End Feature Item -->
+
+                <div class="col-md-6 icon-box">
+                  <i class="bi bi-dribbble"></i>
+                  <div>
+                    <h4>Teacher Portal</h4>
+                    <p>
+                      The teacher portal streamlines attendance management,
+                      generates accurate reports, and simplifies classroom
+                      administration efficiently.
+                    </p>
+                  </div>
+                </div>
+                <!-- End Feature Item -->
+
+                <div class="col-md-6 icon-box">
+                  <i class="bi bi-filter-circle"></i>
+                  <div>
+                    <h4>Records(Excel Sheets)</h4>
+                    <p>
+                      The Excel file facilitates seamless attendance record
+                      tracking, offers easy data export and accessible records.
+                    </p>
+                  </div>
+                </div>
+                <!-- End Feature Item -->
+
+                <div class="col-md-6 icon-box">
+                  <i class="bi bi-lightning-charge"></i>
+                  <div>
+                    <h4>Notification Updates</h4>
+                    <p>
+                      Notifications ensure real-time updates for teachers,
+                      students, and admins, keeping them informed about
+                      attendance status, reminders, and system alerts.
+                    </p>
+                  </div>
+                </div>
+                <!-- End Feature Item -->
+
+                <div class="col-md-6 icon-box">
+                  <i class="bi bi-patch-check"></i>
+                  <div>
+                    <h4>Fast and Accurate</h4>
+                    <p>
+                      The system offers fast processing and accurate attendance
+                      tracking, ensuring real-time updates without delays or
+                      errors.
+                    </p>
+                  </div>
+                </div>
+                <!-- End Feature Item -->
+              </div>
+            </div>
+
+            <div
+              class="col-xl-5 d-flex align-items-center order-1 order-xl-2"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <img src="static/img/alt-features.png" class="img-fluid" alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /Alt Features Section -->
+
+      <!-- Services Section -->
+      <section id="services" class="services section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Services</h2>
+          <p>Check Our Services<br /></p>
+        </div>
+        <!-- End Section Title -->
+
+        <div class="container">
+          <div class="row gy-4">
+            <div
+              class="col-lg-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="service-item item-cyan position-relative">
+                <i class="bi bi-activity icon"></i>
+                <h3>1. Dynamic Attendance Management</h3>
+                <p>
+                  Our system automates attendance tracking with precision,
+                  eliminating manual processes. It saves time, prevents proxy,
+                  and ensures accuracy for both students and teachers.
+                </p>
+                <a href="#" class="read-more stretched-link"
+                  ><span>Read More</span> <i class="bi bi-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <div
+              class="col-lg-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="service-item item-orange position-relative">
+                <i class="bi bi-broadcast icon"></i>
+                <h3>2. Real-Time Notifications</h3>
+                <p>
+                  Students and teachers receive instant notifications for
+                  attendance updates, reminders, and important announcements,
+                  keeping everyone informed and engaged seamlessly.
+                </p>
+                <a href="#" class="read-more stretched-link"
+                  ><span>Read More</span> <i class="bi bi-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <div
+              class="col-lg-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="service-item item-teal position-relative">
+                <i class="bi bi-easel icon"></i>
+                <h3>3. Detailed Attendance Reports</h3>
+                <p>
+                  Generate accurate, exportable reports of student attendance,
+                  categorized by date, subject, or period, ensuring effortless
+                  tracking and monitoring for teachers and administrators.
+                </p>
+                <a href="#" class="read-more stretched-link"
+                  ><span>Read More</span> <i class="bi bi-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <div
+              class="col-lg-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <div class="service-item item-red position-relative">
+                <i class="bi bi-bounding-box-circles icon"></i>
+                <h3>4. Secure Admin Dashboard</h3>
+                <p>
+                  The admin portal provides a centralized interface for managing
+                  users, monitoring statistics, and accessing insights into
+                  attendance data with robust security features.
+                </p>
+                <a href="#" class="read-more stretched-link"
+                  ><span>Read More</span> <i class="bi bi-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <div
+              class="col-lg-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="500"
+            >
+              <div class="service-item item-indigo position-relative">
+                <i class="bi bi-calendar4-week icon"></i>
+                <h3>5. Comprehensive Student Portal</h3>
+                <p>
+                  Students can track their attendance, receive notifications,
+                  and access personalized attendance insights, fostering
+                  transparency and accountability in the academic environment.
+                </p>
+                <a href="#" class="read-more stretched-link"
+                  ><span>Read More</span> <i class="bi bi-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <div
+              class="col-lg-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="600"
+            >
+              <div class="service-item item-pink position-relative">
+                <i class="bi bi-chat-square-text icon"></i>
+                <h3>6. Teacher-Friendly Portal</h3>
+                <p>
+                  Teachers can mark attendance, view class records, and access
+                  analytical reports in a user-friendly interface, enhancing
+                  efficiency and decision-making capabilities.
+                </p>
+                <a href="#" class="read-more stretched-link"
+                  ><span>Read More</span> <i class="bi bi-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+            <!-- End Service Item -->
+          </div>
+        </div>
+      </section>
+      <!-- /Services Section -->
+
+      <!-- Faq Section -->
+      <section id="faq" class="faq section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>F.A.Q</h2>
+          <p>Frequently Asked Questions</p>
+        </div>
+        <!-- End Section Title -->
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="faq-container">
+                <div class="faq-item faq-active">
+                  <h3>1. How does the attendance system work?</h3>
+                  <div class="faq-content">
+                    <p>
+                      The system automatically tracks student attendance using
+                      facial recognition, ensuring accurate and real-time data.
+                    </p>
+                  </div>
+                  <i class="faq-toggle bi bi-chevron-right"></i>
+                </div>
+                <!-- End Faq item-->
+
+                <div class="faq-item">
+                  <h3>
+                    2. Can students mark attendance for themselves or others?
+                  </h3>
+                  <div class="faq-content">
+                    <p>
+                      No, our system prevents proxy attendance by using secure
+                      face recognition technology to verify the presence of each
+                      student.
+                    </p>
+                  </div>
+                  <i class="faq-toggle bi bi-chevron-right"></i>
+                </div>
+                <!-- End Faq item-->
+
+                <div class="faq-item">
+                  <h3>3. Is the attendance data stored securely?</h3>
+                  <div class="faq-content">
+                    <p>
+                      Yes, all attendance data is encrypted and securely stored
+                      in our database, ensuring privacy and compliance with data
+                      protection regulations.
+                    </p>
+                  </div>
+                  <i class="faq-toggle bi bi-chevron-right"></i>
+                </div>
+                <!-- End Faq item-->
+              </div>
+            </div>
+            <!-- End Faq Column-->
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+              <div class="faq-container">
+                <div class="faq-item">
+                  <h3>4. Can teachers edit or correct attendance records?</h3>
+                  <div class="faq-content">
+                    <p>
+                      Yes, teachers have access to modify attendance records in
+                      case of errors, ensuring data accuracy and flexibility.
+                    </p>
+                  </div>
+                  <i class="faq-toggle bi bi-chevron-right"></i>
+                </div>
+                <!-- End Faq item-->
+
+                <div class="faq-item">
+                  <h3>
+                    5. What happens if a student’s face is not recognized?
+                  </h3>
+                  <div class="faq-content">
+                    <p>
+                      In case of non-recognition, students will be marked as
+                      absent, and teachers can manually adjust attendance if
+                      necessary.
+                    </p>
+                  </div>
+                  <i class="faq-toggle bi bi-chevron-right"></i>
+                </div>
+                <!-- End Faq item-->
+
+                <div class="faq-item">
+                  <h3>6. Can the system handle large class sizes?</h3>
+                  <div class="faq-content">
+                    <p>
+                      Yes, our system is designed to scale for large classes,
+                      processing attendance for hundreds of students quickly and
+                      efficiently.
+                    </p>
+                  </div>
+                  <i class="faq-toggle bi bi-chevron-right"></i>
+                </div>
+                <!-- End Faq item-->
+              </div>
+            </div>
+            <!-- End Faq Column-->
+          </div>
+        </div>
+      </section>
+      <!-- /Faq Section -->
+
+      <!-- Testimonials Section -->
+      <section id="testimonials" class="testimonials section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Testimonials</h2>
+          <p>What they are saying about us<br /></p>
+        </div>
+        <!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper init-swiper">
+            <script type="application/json" class="swiper-config">
+              {
+                "loop": true,
+                "speed": 600,
+                "autoplay": {
+                  "delay": 5000
+                },
+                "slidesPerView": "auto",
+                "pagination": {
+                  "el": ".swiper-pagination",
+                  "type": "bullets",
+                  "clickable": true
+                },
+                "breakpoints": {
+                  "320": {
+                    "slidesPerView": 1,
+                    "spaceBetween": 40
+                  },
+                  "1200": {
+                    "slidesPerView": 3,
+                    "spaceBetween": 1
+                  }
+                }
+              }
+            </script>
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i>
+                  </div>
+                  <p>
+                    "Team AI Wizards has showcased exceptional innovation and
+                    technical expertise in developing this smart attendance
+                    system. Their dedication and passion for leveraging AI to
+                    create impactful solutions are commendable. It has been an
+                    honor mentoring such a talented group. Wishing them great
+                    success ahead!"
+                  </p>
+                  <div class="profile mt-auto">
+                    <img
+                      src="static/img/testimonials/testimonials-1.jpg"
+                      class="testimonial-img"
+                      alt=""
+                    />
+                    <h3>Dr.Sayantan Sinha</h3>
+                    <h4>
+                      Technical Trainer Training and Placement Department, GLA
+                      University
+                    </h4>
+                  </div>
+                </div>
+              </div>
+              <!-- End testimonial item -->
+
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i>
+                  </div>
+                  <p>
+                    "This smart attendance system by Team AI Wizards has been a
+                    game-changer. It saves time, eliminates proxies, and
+                    provides accurate records. As a student, it’s incredibly
+                    convenient and efficient. Truly an innovative solution that
+                    enhances the learning experience!"
+                  </p>
+                  <div class="profile mt-auto">
+                    <img
+                      src="static/img/testimonials/testimonials-2.jpg"
+                      class="testimonial-img"
+                      alt=""
+                    />
+                    <h3>Krishnkant Saraswat</h3>
+                    <h4>Student at GLA University</h4>
+                  </div>
+                </div>
+              </div>
+              <!-- End testimonial item -->
+
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i>
+                  </div>
+                  <p>
+                    "Team AI Wizards has delivered an exceptional solution with
+                    their smart attendance system. It optimizes efficiency,
+                    ensures accuracy, and saves valuable time for both students
+                    and faculty. This project reflects innovation and
+                    dedication, setting a benchmark for leveraging technology in
+                    academic management. Proud of their achievement!"
+                  </p>
+                  <div class="profile mt-auto">
+                    <img
+                      src="static/img/testimonials/testimonials-3.jpg"
+                      class="testimonial-img"
+                      alt=""
+                    />
+                    <h3>Dr. Hitendra Garg</h3>
+                    <h4>Head of Department, GLA University</h4>
+                  </div>
+                </div>
+              </div>
+              <!-- End testimonial item -->
+
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i>
+                  </div>
+                  <p>
+                    "The smart attendance system developed by Team AI Wizards is
+                    a game-changer. It streamlines attendance management,
+                    eliminates manual errors, and provides real-time insights.
+                    Their commitment to innovation and precision has resulted in
+                    a solution that benefits both students and faculty
+                    immensely. An outstanding effort by the team!"
+                  </p>
+                  <div class="profile mt-auto">
+                    <img
+                      src="static/img/testimonials/testimonials-4.jpg"
+                      class="testimonial-img"
+                      alt=""
+                    />
+                    <h3>Dr. Piyush Vashishtha</h3>
+                    <h4>Class Advisor, GLA University</h4>
+                  </div>
+                </div>
+              </div>
+              <!-- End testimonial item -->
+
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i
+                    ><i class="bi bi-star-fill"></i>
+                  </div>
+                  <p>
+                    "Team AI Wizards has demonstrated exceptional creativity and
+                    technical expertise with their smart attendance system. It
+                    simplifies attendance tracking, enhances efficiency, and
+                    promotes transparency. This innovative solution is a
+                    testament to their dedication and skill, making a
+                    significant contribution to our academic environment."
+                  </p>
+                  <div class="profile mt-auto">
+                    <img
+                      src="static/img/testimonials/testimonials-5.jpg"
+                      class="testimonial-img"
+                      alt=""
+                    />
+                    <h3>Dr. Ayush Gupta</h3>
+                    <h4>Quant & Reasoning Aptitude Faculty, GLA University</h4>
+                  </div>
+                </div>
+              </div>
+              <!-- End testimonial item -->
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+      <!-- /Testimonials Section -->
+
+      <!-- Team Section -->
+      <section id="team" class="team section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Team</h2>
+          <p>Our hard working team</p>
+        </div>
+        <!-- End Section Title -->
+
+        <div class="container">
+          <div class="row gy-4">
+            <div
+              class="col-lg-3 col-md-6 d-flex align-items-stretch"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="team-member">
+                <div class="member-img">
+                  <img
+                    src="static/img/team/team-1.jpg"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <div class="social">
+                    <a href=""><i class="bi bi-twitter-x"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a
+                      href="https://www.linkedin.com/in/hardik-arora-a34143298/"
+                      ><i class="bi bi-linkedin"></i
+                    ></a>
+                  </div>
+                </div>
+                <div class="member-info">
+                  <h4>Hardik Arora</h4>
+                  <span>Data Science and Analytics.</span>
+                  <p>
+                    Hardik Arora played a key role in this project by
+                    contributing to both the web development and machine
+                    learning model. His expertise ensured seamless integration
+                    between the frontend and backend, while also delivering a
+                    robust ML-based solution for accurate and efficient
+                    attendance management. A versatile and dedicated team
+                    member!.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- End Team Member -->
+
+            <div
+              class="col-lg-3 col-md-6 d-flex align-items-stretch"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="team-member">
+                <div class="member-img">
+                  <img
+                    src="static/img/team/team-2.jpg"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <div class="social">
+                    <a href=""><i class="bi bi-twitter-x"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                  </div>
+                </div>
+                <div class="member-info">
+                  <h4>Hemant Prajapati</h4>
+                  <span>ML and Databse Expert.</span>
+                  <p>
+                    Hemant Prajapati was instrumental in developing the machine
+                    learning model and the admin portal for this project. His
+                    contributions ensured precise data processing and a
+                    user-friendly admin interface, making the system efficient
+                    and easy to manage. A key pillar of the team's success!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- End Team Member -->
+
+            <div
+              class="col-lg-3 col-md-6 d-flex align-items-stretch"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="team-member">
+                <div class="member-img">
+                  <img
+                    src="static/img/team/team-3.jpg"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <div class="social">
+                    <a href=""><i class="bi bi-twitter-x"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                  </div>
+                </div>
+                <div class="member-info">
+                  <h4>Harsh Raj</h4>
+                  <span>Web Devlopment.</span>
+                  <p>
+                    Harsh Raj played a key role in designing and developing the
+                    web interface, particularly focusing on the Teacher Portal.
+                    His expertise ensured a user-friendly experience with
+                    seamless functionality, making the system efficient and
+                    accessible for educators. A vital contributor to the
+                    project's success!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- End Team Member -->
+
+            <div
+              class="col-lg-3 col-md-6 d-flex align-items-stretch"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <div class="team-member">
+                <div class="member-img">
+                  <img
+                    src="static/img/team/team-4.jpg"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <div class="social">
+                    <a href=""><i class="bi bi-twitter-x"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                  </div>
+                </div>
+                <div class="member-info">
+                  <h4>Divyanshu Rajoria</h4>
+                  <span>Web Development.</span>
+                  <p>
+                    Divyanshu Rajoria contributed significantly to the project
+                    by developing the web interface, with a primary focus on the
+                    Teacher Portal. His efforts ensured a smooth, intuitive, and
+                    efficient user experience, making the system highly
+                    functional and effective for educators.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- End Team Member -->
+
+            <div
+              class="col-lg-3 col-md-6 d-flex align-items-stretch"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="team-member">
+                <div class="member-img">
+                  <img
+                    src="static/img/team/team-5.jpg"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <div class="social">
+                    <a href=""><i class="bi bi-twitter-x"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                  </div>
+                </div>
+                <div class="member-info">
+                  <h4>Nikita Chaudhary</h4>
+                  <span>Web Development.</span>
+                  <p>
+                    Nikita Chaudhary played a key role in developing the web
+                    interface, focusing on the Student Portal. Her contributions
+                    ensured a user-friendly and seamless experience for
+                    students, enabling easy access to attendance records,
+                    notifications, and other essential features.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- End Team Member -->
+
+            <div
+              class="col-lg-3 col-md-6 d-flex align-items-stretch"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="team-member">
+                <div class="member-img">
+                  <img
+                    src="static/img/team/team-6.jpg"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <div class="social">
+                    <a href=""><i class="bi bi-twitter-x"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                  </div>
+                </div>
+                <div class="member-info">
+                  <h4>Shiven Rastogi.</h4>
+                  <span>Web Development</span>
+                  <p>
+                    Shiven Rastogi contributed significantly to the development
+                    of the Student Portal, focusing on creating a responsive and
+                    intuitive interface. His work ensured students could
+                    effortlessly access attendance records, notifications, and
+                    other important features, enhancing user experience and
+                    engagement.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- End Team Member -->
+
+            <div
+              class="col-lg-3 col-md-6 d-flex align-items-stretch"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="team-member">
+                <div class="member-img">
+                  <img
+                    src="static/img/team/team-7.jpg"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <div class="social">
+                    <a href=""><i class="bi bi-twitter-x"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                  </div>
+                </div>
+                <div class="member-info">
+                  <h4>Amitabh Singh</h4>
+                  <span>ML Expert</span>
+                  <p>
+                    Amitabh Singh played a crucial role in optimizing and
+                    fine-tuning the machine learning model. His expertise
+                    ensured the model's accuracy, efficiency, and seamless
+                    integration into the system, significantly enhancing its
+                    overall performance. A vital contributor to the project's
+                    success!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- End Team Member -->
+          </div>
+        </div>
+      </section>
+      <!-- /Team Section -->
+
+      <!-- Recent Posts Section -->
+      <section id="recent-posts" class="recent-posts section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Live Model Working</h2>
+          <p>Detection and Analysis by our Model</p>
+        </div>
+        <!-- End Section Title -->
+
+        <div class="container">
+          <div class="row gy-5">
+            <div class="col-xl-4 col-md-6">
+              <div
+                class="post-item position-relative h-100"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
+                <div class="post-img position-relative overflow-hidden">
+                  <img
+                    src="static/img/blog/blog-1.jpg"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <span class="post-date">January 2</span>
+                </div>
+
+                <div class="post-content d-flex flex-column">
+                  <h3 class="post-title">First time we tested our Model.</h3>
+
+                  <div class="meta d-flex align-items-center">
+                    <div class="d-flex align-items-center">
+                      <i class="bi bi-person"></i>
+                      <span class="ps-2">Hardik Arora</span>
+                    </div>
+                    <span class="px-3 text-black-50">/</span>
+                    <div class="d-flex align-items-center">
+                      <i class="bi bi-folder2"></i>
+                      <span class="ps-2">Data Science</span>
+                    </div>
+                  </div>
+
+                  <hr />
+
+                  <a href="blog-details.html" class="readmore stretched-link"
+                    ><span>Read More</span><i class="bi bi-arrow-right"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <!-- End post item -->
+
+            <div class="col-xl-4 col-md-6">
+              <div
+                class="post-item position-relative h-100"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <div class="post-img position-relative overflow-hidden">
+                  <img
+                    src="static/img/blog/blog-2.jpg"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <span class="post-date">January 8</span>
+                </div>
+
+                <div class="post-content d-flex flex-column">
+                  <h3 class="post-title">
+                    Getting our model ready for Lecture testing.
+                  </h3>
+
+                  <div class="meta d-flex align-items-center">
+                    <div class="d-flex align-items-center">
+                      <i class="bi bi-person"></i>
+                      <span class="ps-2">Hemant Prajapati</span>
+                    </div>
+                    <span class="px-3 text-black-50">/</span>
+                    <div class="d-flex align-items-center">
+                      <i class="bi bi-folder2"></i>
+                      <span class="ps-2">Machine Learning</span>
+                    </div>
+                  </div>
+
+                  <hr />
+
+                  <a href="blog-details.html" class="readmore stretched-link"
+                    ><span>Read More</span><i class="bi bi-arrow-right"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <!-- End post item -->
+
+            <div
+              class="col-xl-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="post-item position-relative h-100">
+                <div class="post-img position-relative overflow-hidden">
+                  <img
+                    src="static/img/blog/blog-3.jpg"
+                    class="img-fluid"
+                    alt=""
+                  />
+                  <span class="post-date">January 12</span>
+                </div>
+
+                <div class="post-content d-flex flex-column">
+                  <h3 class="post-title">
+                    Making our model functional for automating Attendance
+                    Records.
+                  </h3>
+
+                  <div class="meta d-flex align-items-center">
+                    <div class="d-flex align-items-center">
+                      <i class="bi bi-person"></i>
+                      <span class="ps-2">Amitabh Singh</span>
+                    </div>
+                    <span class="px-3 text-black-50">/</span>
+                    <div class="d-flex align-items-center">
+                      <i class="bi bi-folder2"></i>
+                      <span class="ps-2">Machine Learning</span>
+                    </div>
+                  </div>
+
+                  <hr />
+
+                  <a href="blog-details.html" class="readmore stretched-link"
+                    ><span>Read More</span><i class="bi bi-arrow-right"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <!-- End post item -->
+          </div>
+        </div>
+      </section>
+      <!-- /Recent Posts Section -->
+
+      <!-- Contact Section -->
+      <section id="contact" class="contact section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Contact</h2>
+          <p>Contact Us</p>
+        </div>
+        <!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <div class="row gy-4">
+            <div class="col-lg-6">
+              <div class="row gy-4">
+                <div class="col-md-6">
+                  <div class="info-item" data-aos="fade" data-aos-delay="200">
+                    <i class="bi bi-geo-alt"></i>
+                    <h3>Address</h3>
+                    <p>
+                      GLA University. 17km Stone, NH-19, Mathura-Delhi Road P.O.
+                      Chaumuhan
+                    </p>
+                    <p>Mathura-281 406 (U.P.) India</p>
+                  </div>
+                </div>
+                <!-- End Info Item -->
+
+                <div class="col-md-6">
+                  <div class="info-item" data-aos="fade" data-aos-delay="300">
+                    <i class="bi bi-telephone"></i>
+                    <h3>Call Us</h3>
+                    <p>+91 - 9997859116</p>
+                    <p>+91 - 7488343926</p>
+                  </div>
+                </div>
+                <!-- End Info Item -->
+
+                <div class="col-md-6">
+                  <div class="info-item" data-aos="fade" data-aos-delay="400">
+                    <i class="bi bi-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>hardikarora483@gmail.com</p>
+                    <p>harsh.raj_cs.aiml22@gla.ac.in</p>
+                  </div>
+                </div>
+                <!-- End Info Item -->
+
+                <div class="col-md-6">
+                  <div class="info-item" data-aos="fade" data-aos-delay="500">
+                    <i class="bi bi-clock"></i>
+                    <h3>Open Hours</h3>
+                    <p>Monday - Friday</p>
+                    <p>9:00AM - 05:00PM</p>
+                  </div>
+                </div>
+                <!-- End Info Item -->
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <form
+                action="forms/contact.php"
+                method="post"
+                class="php-email-form"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <div class="row gy-4">
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      name="name"
+                      class="form-control"
+                      placeholder="Your Name"
+                      required=""
+                    />
+                  </div>
+
+                  <div class="col-md-6">
+                    <input
+                      type="email"
+                      class="form-control"
+                      name="email"
+                      placeholder="Your Email"
+                      required=""
+                    />
+                  </div>
+
+                  <div class="col-12">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="subject"
+                      placeholder="Subject"
+                      required=""
+                    />
+                  </div>
+
+                  <div class="col-12">
+                    <textarea
+                      class="form-control"
+                      name="message"
+                      rows="6"
+                      placeholder="Message"
+                      required=""
+                    ></textarea>
+                  </div>
+
+                  <div class="col-12 text-center">
+                    <div class="loading">Loading</div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">
+                      Your message has been sent. Thank you!
+                    </div>
+
+                    <button type="submit">Send Message</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- End Contact Form -->
+          </div>
+        </div>
+      </section>
+      <!-- /Contact Section -->
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="container footer-top">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6 footer-about">
+            <a href="index.html" class="d-flex align-items-center">
+              <span class="sitename">Hardik Arora</span>
+            </a>
+            <div class="footer-contact pt-3">
+              <p>
+                GLA University. 17km Stone, NH-19, Mathura-Delhi Road P.O.
+                Chaumuhan
+              </p>
+              <p>Mathura-281 406 (U.P.) India</p>
+              <p class="mt-3">
+                <strong>Phone:</strong> <span>+91 - 9997859116</span>
+              </p>
+              <p>
+                <strong>Email:</strong> <span>hardikarora483@gmail.com</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+              <li>
+                <i class="bi bi-chevron-right"></i> <a href="#">About us</a>
+              </li>
+              <li>
+                <i class="bi bi-chevron-right"></i> <a href="#">Services</a>
+              </li>
+              <li>
+                <i class="bi bi-chevron-right"></i>
+                <a href="#">Terms of service</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li>
+                <i class="bi bi-chevron-right"></i>
+                <a href="#">Data Science and Analytics</a>
+              </li>
+              <li>
+                <i class="bi bi-chevron-right"></i>
+                <a href="#">Web Development</a>
+              </li>
+              <li>
+                <i class="bi bi-chevron-right"></i> <a href="#">AI/ML Models</a>
+              </li>
+              <li>
+                <i class="bi bi-chevron-right"></i> <a href="#">Web Design</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-12">
+            <h4>Follow Us</h4>
+            <p>
+              Want to know more about me or have any suggestions for me , visit
+              socials!
+            </p>
+            <div class="social-links d-flex">
+              <a href="https://github.com/hardik121121"
+                ><i class="bi bi-twitter-x"></i
+              ></a>
+              <a href="https://github.com/hardik121121"
+                ><i class="bi bi-facebook"></i
+              ></a>
+              <a href="https://www.linkedin.com/in/hardik-arora-a34143298/"
+                ><i class="bi bi-instagram"></i
+              ></a>
+              <a href="https://www.linkedin.com/in/hardik-arora-a34143298/"
+                ><i class="bi bi-linkedin"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container copyright text-center mt-4">
+        <p>
+          © <span>Copyright</span>
+          <strong class="px-1 sitename"
+            >Smart Attendance and Management System</strong
+          >
+          <span>All Rights Reserved</span>
+        </p>
+        <div class="credits">
+          Designed by
+          <a href="https://www.linkedin.com/in/hardik-arora-a34143298/"
+            >Hardik Arora</a
+          >
+          Distributed by <a href=“https://github.com/hardik121121>Hardik Arora
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a
+      href="#"
+      id="scroll-top"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="static/vendor/php-email-form/validate.js"></script>
+    <script src="static/vendor/aos/aos.js"></script>
+    <script src="static/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="static/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="static/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="static/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="static/js/main.js"></script>
+  </body>
+</html>
